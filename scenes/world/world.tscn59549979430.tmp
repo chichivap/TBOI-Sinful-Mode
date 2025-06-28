@@ -1,0 +1,207 @@
+[gd_scene load_steps=12 format=3 uid="uid://dx6vuy4g7inrf"]
+
+[ext_resource type="PackedScene" uid="uid://c5uam18jur2lr" path="res://scenes/player/player.tscn" id="1_dphjl"]
+[ext_resource type="Script" uid="uid://cq1qj67tgakw6" path="res://scenes/world/camera_2d.gd" id="3_1fp7r"]
+[ext_resource type="PackedScene" uid="uid://wfg1jpx2u7vc" path="res://scenes/world/DungeonRooms/dungeon_room.tscn" id="3_6m72w"]
+[ext_resource type="PackedScene" uid="uid://b8gvtrfm60t45" path="res://scenes/world/DungeonRooms/Doors/door_down.tscn" id="3_t5ptc"]
+[ext_resource type="PackedScene" uid="uid://dtpmfqawnllrx" path="res://scenes/world/DungeonRooms/Doors/door_up.tscn" id="3_v5dby"]
+[ext_resource type="PackedScene" uid="uid://b3348calwxq67" path="res://scenes/world/DungeonRooms/Doors/door_left.tscn" id="4_t5ptc"]
+[ext_resource type="PackedScene" uid="uid://cre525qw8hghf" path="res://scenes/world/DungeonRooms/Doors/door_right.tscn" id="5_bq33v"]
+[ext_resource type="PackedScene" uid="uid://3v488pp0urrg" path="res://scenes/world/enemy_spawner_room_1.tscn" id="10_5qq27"]
+[ext_resource type="Script" uid="uid://drlva0xtg2min" path="res://scenes/world/test_detector.gd" id="11_dlabj"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_1yooq"]
+vertices = PackedVector2Array(406.031, 250, 78, 250, 78, 71.9766, 406.969, 71.0078)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(73, 67, 412, 66, 411, 255, 73, 255)])
+agent_radius = 5.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5qq27"]
+size = Vector2(97, 85)
+
+[node name="World" type="Node2D"]
+y_sort_enabled = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
+position_smoothing_enabled = true
+position_smoothing_speed = 10.0
+script = ExtResource("3_1fp7r")
+
+[node name="Dungeons" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="DungeonRoom" parent="Dungeons" instance=ExtResource("3_6m72w")]
+y_sort_enabled = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Dungeons/DungeonRoom/Walls" index="0"]
+polygon = PackedVector2Array(58, 72, 73, 61, 145, 61, 160, 67, 175, 61, 219, 58, 208, 26, 18, 25, 18, 311, 209, 310, 209, 262, 171, 262, 157, 252, 143, 263, 74, 263, 57, 249)
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Dungeons/DungeonRoom/Walls" index="1"]
+polygon = PackedVector2Array(209, 263, 307, 263, 322, 254, 335, 264, 407, 264, 426, 250, 426, 73, 405, 61, 336, 61, 321, 68, 300, 58, 254, 58, 269, 26, 452, 27, 455, 304, 209, 309)
+
+[node name="DoorUp" parent="Dungeons/DungeonRoom" instance=ExtResource("3_v5dby")]
+position = Vector2(241, 42)
+
+[node name="DungeonRoom2" parent="Dungeons" instance=ExtResource("3_6m72w")]
+y_sort_enabled = true
+position = Vector2(1, -321)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Dungeons/DungeonRoom2/Walls" index="0"]
+polygon = PackedVector2Array(215, 25, 25, 25, 25, 301, 209, 301, 225, 264, 170, 264, 156, 257, 143, 264, 68, 264, 56, 252, 56, 176, 25, 194, 26, 125, 59, 149, 59, 74, 73, 60, 145, 60, 160, 69, 180, 58, 206, 57)
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Dungeons/DungeonRoom2/Walls" index="1"]
+polygon = PackedVector2Array(255, 263, 308, 263, 320, 255, 335, 264, 410, 264, 426, 253, 426, 189, 451, 186, 451, 139, 428, 145, 428, 71, 410, 58, 334, 58, 323, 69, 304, 59, 205, 59, 214, 27, 458, 28, 456, 293, 266, 292)
+
+[node name="DoorDown" parent="Dungeons/DungeonRoom2" instance=ExtResource("3_t5ptc")]
+position = Vector2(241, 276)
+
+[node name="DoorLeft" parent="Dungeons/DungeonRoom2" instance=ExtResource("4_t5ptc")]
+position = Vector2(43, 161)
+
+[node name="DoorRight" parent="Dungeons/DungeonRoom2" instance=ExtResource("5_bq33v")]
+position = Vector2(440, 165)
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="Dungeons/DungeonRoom2"]
+navigation_polygon = SubResource("NavigationPolygon_1yooq")
+
+[node name="TestDetector" type="Area2D" parent="Dungeons/DungeonRoom2"]
+collision_layer = 0
+script = ExtResource("11_dlabj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Dungeons/DungeonRoom2/TestDetector"]
+position = Vector2(242, 161)
+shape = SubResource("RectangleShape2D_5qq27")
+
+[node name="EnemySpawnerRoom1" parent="Dungeons/DungeonRoom2" instance=ExtResource("10_5qq27")]
+FlyScene = null
+HorfScene = null
+
+[node name="Gaper1Launch" type="Marker2D" parent="Dungeons/DungeonRoom2/EnemySpawnerRoom1"]
+position = Vector2(135, 117)
+
+[node name="Gaper2Launch" type="Marker2D" parent="Dungeons/DungeonRoom2/EnemySpawnerRoom1"]
+position = Vector2(346, 116)
+
+[node name="DungeonRoom8" parent="Dungeons" instance=ExtResource("3_6m72w")]
+y_sort_enabled = true
+position = Vector2(480, -958)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Dungeons/DungeonRoom8/Walls" index="0"]
+polygon = PackedVector2Array(215, 25, 25, 25, 25, 301, 209, 301, 225, 264, 170, 264, 156, 257, 143, 264, 68, 264, 56, 252, 56, 176, 25, 194, 26, 125, 59, 149, 59, 74, 73, 60, 145, 60, 160, 69, 180, 58, 206, 57)
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Dungeons/DungeonRoom8/Walls" index="1"]
+polygon = PackedVector2Array(254, 260, 307, 263, 322, 254, 335, 264, 407, 264, 426, 250, 426, 73, 405, 61, 336, 61, 321, 68, 300, 58, 206, 58, 208, 27, 452, 27, 455, 304, 266, 306)
+
+[node name="DoorDown" parent="Dungeons/DungeonRoom8" instance=ExtResource("3_t5ptc")]
+position = Vector2(241, 276)
+
+[node name="DoorLeft" parent="Dungeons/DungeonRoom8" instance=ExtResource("4_t5ptc")]
+position = Vector2(43, 161)
+
+[node name="DungeonRoom3" parent="Dungeons" instance=ExtResource("3_6m72w")]
+y_sort_enabled = true
+position = Vector2(-481, -321)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Dungeons/DungeonRoom3/Walls" index="0"]
+polygon = PackedVector2Array(213, 26, 25, 25, 25, 301, 209, 301, 225, 264, 170, 264, 156, 257, 143, 264, 68, 264, 56, 252, 56, 176, 25, 194, 26, 125, 59, 149, 59, 74, 73, 60, 145, 60, 160, 69, 180, 58, 224, 58)
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Dungeons/DungeonRoom3/Walls" index="1"]
+polygon = PackedVector2Array(261, 56, 307, 57, 319, 66, 338, 57, 408, 57, 422, 72, 422, 150, 454, 137, 450, 188, 422, 175, 424, 251, 410, 264, 335, 264, 323, 256, 306, 264, 215, 264, 213, 301, 452, 302, 453, 26, 268, 26)
+
+[node name="DoorLeft" parent="Dungeons/DungeonRoom3" instance=ExtResource("4_t5ptc")]
+position = Vector2(43, 161)
+
+[node name="DoorRight" parent="Dungeons/DungeonRoom3" instance=ExtResource("5_bq33v")]
+position = Vector2(439, 161)
+
+[node name="DoorUp" parent="Dungeons/DungeonRoom3" instance=ExtResource("3_v5dby")]
+position = Vector2(241, 42)
+
+[node name="DungeonRoom6" parent="Dungeons" instance=ExtResource("3_6m72w")]
+y_sort_enabled = true
+position = Vector2(479, -319)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Dungeons/DungeonRoom6/Walls" index="0"]
+polygon = PackedVector2Array(213, 26, 25, 25, 25, 301, 209, 301, 225, 264, 170, 264, 156, 257, 143, 264, 68, 264, 56, 252, 56, 176, 25, 194, 26, 125, 59, 149, 59, 74, 73, 60, 145, 60, 160, 69, 180, 58, 224, 58)
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Dungeons/DungeonRoom6/Walls" index="1"]
+polygon = PackedVector2Array(261, 56, 307, 57, 319, 66, 338, 57, 408, 57, 422, 72, 422, 150, 454, 137, 450, 188, 423, 152, 424, 251, 410, 264, 335, 264, 323, 256, 306, 264, 215, 264, 213, 301, 452, 302, 453, 26, 268, 26)
+
+[node name="DoorLeft" parent="Dungeons/DungeonRoom6" instance=ExtResource("4_t5ptc")]
+position = Vector2(43, 161)
+
+[node name="DoorUp" parent="Dungeons/DungeonRoom6" instance=ExtResource("3_v5dby")]
+position = Vector2(241, 42)
+
+[node name="DungeonRoom5" parent="Dungeons" instance=ExtResource("3_6m72w")]
+y_sort_enabled = true
+position = Vector2(-961, -321)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Dungeons/DungeonRoom5/Walls" index="0"]
+polygon = PackedVector2Array(213, 26, 25, 25, 25, 301, 209, 301, 225, 264, 170, 264, 156, 257, 143, 264, 68, 264, 56, 252, 57, 149, 25, 194, 26, 125, 59, 149, 59, 74, 73, 60, 145, 60, 160, 69, 180, 58, 270, 59)
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Dungeons/DungeonRoom5/Walls" index="1"]
+polygon = PackedVector2Array(261, 56, 307, 57, 319, 66, 338, 57, 408, 57, 422, 72, 422, 150, 454, 137, 450, 188, 422, 175, 424, 251, 410, 264, 335, 264, 323, 256, 306, 264, 215, 264, 213, 301, 452, 302, 453, 26, 268, 26)
+
+[node name="DoorRight" parent="Dungeons/DungeonRoom5" instance=ExtResource("5_bq33v")]
+position = Vector2(439, 161)
+
+[node name="DungeonRoom9" parent="Dungeons" instance=ExtResource("3_6m72w")]
+y_sort_enabled = true
+position = Vector2(0, -957)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Dungeons/DungeonRoom9/Walls" index="0"]
+polygon = PackedVector2Array(213, 26, 25, 25, 25, 301, 209, 301, 225, 264, 170, 264, 156, 257, 143, 264, 68, 264, 56, 252, 57, 149, 25, 194, 26, 125, 59, 149, 59, 74, 73, 60, 145, 60, 160, 69, 180, 58, 270, 59)
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Dungeons/DungeonRoom9/Walls" index="1"]
+polygon = PackedVector2Array(261, 56, 307, 57, 319, 66, 338, 57, 408, 57, 422, 72, 422, 150, 454, 137, 450, 188, 422, 175, 424, 251, 410, 264, 335, 264, 323, 256, 306, 264, 215, 264, 213, 301, 452, 302, 453, 26, 268, 26)
+
+[node name="DoorRight" parent="Dungeons/DungeonRoom9" instance=ExtResource("5_bq33v")]
+position = Vector2(439, 161)
+
+[node name="DungeonRoom4" parent="Dungeons" instance=ExtResource("3_6m72w")]
+y_sort_enabled = true
+position = Vector2(-480, -641)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Dungeons/DungeonRoom4/Walls" index="0"]
+polygon = PackedVector2Array(213, 26, 25, 25, 25, 301, 209, 301, 222, 264, 170, 264, 156, 257, 143, 264, 68, 264, 56, 252, 56, 151, 28, 121, 26, 125, 59, 149, 59, 74, 73, 60, 145, 60, 160, 69, 180, 58, 272, 57)
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Dungeons/DungeonRoom4/Walls" index="1"]
+polygon = PackedVector2Array(261, 56, 307, 57, 319, 66, 338, 57, 408, 57, 422, 72, 422, 150, 454, 137, 444, 135, 422, 153, 424, 251, 410, 264, 335, 264, 323, 256, 306, 264, 260, 263, 272, 297, 452, 302, 453, 26, 268, 26)
+
+[node name="DoorDown" parent="Dungeons/DungeonRoom4" instance=ExtResource("3_t5ptc")]
+position = Vector2(243, 275)
+
+[node name="DungeonRoom7" parent="Dungeons" instance=ExtResource("3_6m72w")]
+y_sort_enabled = true
+position = Vector2(480, -639)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Dungeons/DungeonRoom7/Walls" index="0"]
+polygon = PackedVector2Array(213, 26, 25, 25, 25, 301, 209, 301, 222, 264, 170, 264, 156, 257, 143, 264, 68, 264, 56, 252, 56, 151, 28, 121, 26, 125, 59, 149, 59, 74, 73, 60, 145, 60, 160, 69, 180, 58, 221, 56)
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Dungeons/DungeonRoom7/Walls" index="1"]
+polygon = PackedVector2Array(261, 56, 307, 57, 319, 66, 338, 57, 408, 57, 422, 72, 422, 150, 454, 137, 444, 135, 422, 153, 424, 251, 410, 264, 335, 264, 323, 256, 306, 264, 260, 263, 272, 297, 452, 302, 453, 26, 268, 26)
+
+[node name="DoorDown" parent="Dungeons/DungeonRoom7" instance=ExtResource("3_t5ptc")]
+position = Vector2(243, 275)
+
+[node name="DoorUp" parent="Dungeons/DungeonRoom7" instance=ExtResource("3_v5dby")]
+position = Vector2(241, 42)
+
+[node name="Player" parent="." instance=ExtResource("1_dphjl")]
+z_index = 1
+position = Vector2(199, 190)
+collision_mask = 4
+
+[connection signal="body_entered" from="Dungeons/DungeonRoom2/TestDetector" to="Dungeons/DungeonRoom2/TestDetector" method="_on_body_entered"]
+
+[editable path="Dungeons/DungeonRoom"]
+[editable path="Dungeons/DungeonRoom2"]
+[editable path="Dungeons/DungeonRoom8"]
+[editable path="Dungeons/DungeonRoom3"]
+[editable path="Dungeons/DungeonRoom6"]
+[editable path="Dungeons/DungeonRoom5"]
+[editable path="Dungeons/DungeonRoom9"]
+[editable path="Dungeons/DungeonRoom4"]
+[editable path="Dungeons/DungeonRoom7"]

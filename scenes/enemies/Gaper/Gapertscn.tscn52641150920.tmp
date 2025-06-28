@@ -1,0 +1,49 @@
+[gd_scene load_steps=8 format=3 uid="uid://d368mav5vc8k4"]
+
+[ext_resource type="PackedScene" uid="uid://demr2cd0vql4a" path="res://scenes/enemies/enemy.tscn" id="1_bti7m"]
+[ext_resource type="Texture2D" uid="uid://cyk5f1fwb5wti" path="res://art/characters/Enemies/Wanderer/monster_000_bodies01 — копия.png" id="2_6jytl"]
+[ext_resource type="Script" uid="uid://cjfca2d5a2wnw" path="res://scenes/enemies/Gaper/gaper.gd" id="2_nl6x5"]
+[ext_resource type="Script" uid="uid://dg4fftlngpwwk" path="res://scenes/enemies/Gaper/idle_state.gd" id="2_yhh4e"]
+[ext_resource type="Resource" uid="uid://d0w5bvub6jv1w" path="res://resources/stats/enemies/gaper_stats.tres" id="3_7ftk0"]
+[ext_resource type="Script" uid="uid://bvs7wqr1gyc01" path="res://scenes/enemies/Gaper/walking_state.gd" id="3_w7qp5"]
+[ext_resource type="Texture2D" uid="uid://d1omeqaur4moe" path="res://art/characters/Enemies/StillHead/monster_017_gaper.png" id="4_2fccd"]
+
+[node name="Gaper" instance=ExtResource("1_bti7m")]
+script = ExtResource("2_nl6x5")
+
+[node name="Sprite2D" parent="." index="1"]
+animation = &""
+
+[node name="MoveComponent" parent="." index="3"]
+stats = ExtResource("3_7ftk0")
+
+[node name="StateMachine" parent="." index="9" node_paths=PackedStringArray("initial_state")]
+initial_state = NodePath("WalkingState")
+
+[node name="IdleState" type="Node" parent="StateMachine" index="0"]
+script = ExtResource("2_yhh4e")
+
+[node name="WalkingState" type="Node" parent="StateMachine" index="1"]
+script = ExtResource("3_w7qp5")
+state = 1
+
+[node name="Body" type="Sprite2D" parent="." index="11"]
+position = Vector2(0, 1)
+texture = ExtResource("2_6jytl")
+hframes = 8
+vframes = 5
+
+[node name="Head" type="Sprite2D" parent="." index="12"]
+position = Vector2(0, -10)
+texture = ExtResource("4_2fccd")
+hframes = 2
+vframes = 2
+frame = 1
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." index="13"]
+
+[node name="NavigationTimer" type="Timer" parent="." index="14"]
+wait_time = 0.5
+autostart = true
+
+[connection signal="timeout" from="NavigationTimer" to="." method="_on_navigation_timer_timeout"]

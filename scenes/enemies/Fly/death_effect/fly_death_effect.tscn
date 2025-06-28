@@ -1,0 +1,103 @@
+[gd_scene load_steps=16 format=3 uid="uid://dhl0e3yygb24g"]
+
+[ext_resource type="Script" uid="uid://3li4j0suduus" path="res://components/onetime_animated_effect.gd" id="1_g2nwd"]
+[ext_resource type="Texture2D" uid="uid://3jwl5umhq7kt" path="res://art/characters/Enemies/Fly/monster_010_fly.png" id="1_l1fys"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nk7ej"]
+atlas = ExtResource("1_l1fys")
+region = Rect2(0, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_38rfu"]
+atlas = ExtResource("1_l1fys")
+region = Rect2(64, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_osqvx"]
+atlas = ExtResource("1_l1fys")
+region = Rect2(128, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hhs2d"]
+atlas = ExtResource("1_l1fys")
+region = Rect2(192, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1ts3o"]
+atlas = ExtResource("1_l1fys")
+region = Rect2(0, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a1dev"]
+atlas = ExtResource("1_l1fys")
+region = Rect2(64, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ib50u"]
+atlas = ExtResource("1_l1fys")
+region = Rect2(128, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_17umb"]
+atlas = ExtResource("1_l1fys")
+region = Rect2(192, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pmgkb"]
+atlas = ExtResource("1_l1fys")
+region = Rect2(0, 192, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_loxkp"]
+atlas = ExtResource("1_l1fys")
+region = Rect2(64, 192, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h44lv"]
+atlas = ExtResource("1_l1fys")
+region = Rect2(128, 192, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bw3we"]
+atlas = ExtResource("1_l1fys")
+region = Rect2(192, 192, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_g2wld"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nk7ej")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_38rfu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_osqvx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hhs2d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1ts3o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a1dev")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ib50u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_17umb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pmgkb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_loxkp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h44lv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bw3we")
+}],
+"loop": false,
+"name": &"default",
+"speed": 20.0
+}]
+
+[node name="FlyDeathEffect" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_g2wld")
+autoplay = "default"
+frame = 6
+frame_progress = 0.210923
+script = ExtResource("1_g2nwd")

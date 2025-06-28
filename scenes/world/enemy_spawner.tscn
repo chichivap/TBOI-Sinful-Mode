@@ -1,0 +1,20 @@
+[gd_scene load_steps=7 format=3 uid="uid://cevcqrk7nyyi8"]
+
+[ext_resource type="Script" uid="uid://bumoapc6xycq4" path="res://scenes/world/enemy_spawner.gd" id="1_6ja3c"]
+[ext_resource type="PackedScene" uid="uid://dh8ccnbn42o4m" path="res://scenes/enemies/Fly/fly.tscn" id="2_v4gw6"]
+[ext_resource type="PackedScene" uid="uid://chs3phgxoswr8" path="res://scenes/enemies/Horf/horf.tscn" id="3_mabbb"]
+[ext_resource type="PackedScene" uid="uid://d368mav5vc8k4" path="res://scenes/enemies/Gaper/Gaper.tscn" id="3_s7prk"]
+[ext_resource type="Script" uid="uid://m8l0pv3ehm5u" path="res://components/EnemySpawnerComponent.gd" id="5_s7prk"]
+[ext_resource type="PackedScene" uid="uid://0s058vsi7x44" path="res://UI/launch_effect_spawner_component.tscn" id="6_mabbb"]
+
+[node name="EnemySpawner" type="Node2D"]
+script = ExtResource("1_6ja3c")
+FlyScene = ExtResource("2_v4gw6")
+HorfScene = ExtResource("3_mabbb")
+GaperScene = ExtResource("3_s7prk")
+
+[node name="EnemySpawnerComponent" type="Node2D" parent="."]
+script = ExtResource("5_s7prk")
+metadata/_custom_type_script = "uid://m8l0pv3ehm5u"
+
+[node name="LaunchEffectSpawnerComponent" parent="." instance=ExtResource("6_mabbb")]

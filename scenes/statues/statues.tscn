@@ -1,0 +1,48 @@
+[gd_scene load_steps=6 format=3 uid="uid://bkgagd7e8kdpa"]
+
+[ext_resource type="Script" uid="uid://0tvmvs5dh5bx" path="res://scenes/statues/statues.gd" id="1_f3pxg"]
+[ext_resource type="PackedScene" uid="uid://cmqbspesy8jcq" path="res://scenes/statues/Wrath/wrath_statue.tscn" id="2_mtw0d"]
+[ext_resource type="PackedScene" uid="uid://cfxktvdw16hyh" path="res://scenes/statues/Gluttony/gluttony_statue.tscn" id="3_f3pxg"]
+[ext_resource type="Texture2D" uid="uid://bcr6x8gampmyu" path="res://art/tilemap/Button/OpenButton.png" id="4_mtw0d"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mtw0d"]
+size = Vector2(26, 14)
+
+[node name="Statues" type="Node2D"]
+script = ExtResource("1_f3pxg")
+
+[node name="WrathStatue" parent="." instance=ExtResource("2_mtw0d")]
+position = Vector2(110, 30)
+
+[node name="ButtonWrath" type="Node2D" parent="WrathStatue"]
+position = Vector2(-48, 8)
+
+[node name="Sprite2D" type="Sprite2D" parent="WrathStatue/ButtonWrath"]
+position = Vector2(48, 23)
+texture = ExtResource("4_mtw0d")
+
+[node name="WrathDetector" type="Area2D" parent="WrathStatue/ButtonWrath"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WrathStatue/ButtonWrath/WrathDetector"]
+position = Vector2(49, 24)
+shape = SubResource("RectangleShape2D_mtw0d")
+
+[node name="GluttonyStatue" parent="." instance=ExtResource("3_f3pxg")]
+position = Vector2(17, 36)
+
+[node name="ButtonGluttony" type="Node2D" parent="GluttonyStatue"]
+position = Vector2(45, 2)
+
+[node name="Sprite2D" type="Sprite2D" parent="GluttonyStatue/ButtonGluttony"]
+position = Vector2(-43, 23)
+texture = ExtResource("4_mtw0d")
+
+[node name="GluttonyDetector" type="Area2D" parent="GluttonyStatue"]
+position = Vector2(-47, 2)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GluttonyStatue/GluttonyDetector"]
+position = Vector2(49, 24)
+shape = SubResource("RectangleShape2D_mtw0d")
+
+[connection signal="body_entered" from="WrathStatue/ButtonWrath/WrathDetector" to="." method="_on_wrath_detector_body_entered"]
+[connection signal="body_entered" from="GluttonyStatue/GluttonyDetector" to="." method="_on_gluttony_detector_body_entered"]

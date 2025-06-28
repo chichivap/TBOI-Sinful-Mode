@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://qq1c1xlid62b"]
+
+[node name="Statue" type="Node2D"]
+y_sort_enabled = true
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]

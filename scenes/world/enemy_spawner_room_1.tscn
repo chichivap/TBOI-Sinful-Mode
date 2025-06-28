@@ -1,0 +1,12 @@
+[gd_scene load_steps=4 format=3 uid="uid://3v488pp0urrg"]
+
+[ext_resource type="PackedScene" uid="uid://cevcqrk7nyyi8" path="res://scenes/world/enemy_spawner.tscn" id="1_52ryb"]
+[ext_resource type="Script" uid="uid://budftoeoadqlk" path="res://scenes/world/enemy_spawner_room_1.gd" id="2_633dl"]
+[ext_resource type="PackedScene" uid="uid://0d01nlron7hm" path="res://scenes/effects/enemy_lauch_effect.tscn" id="3_xnlny"]
+
+[node name="EnemySpawnerRoom1" instance=ExtResource("1_52ryb")]
+script = ExtResource("2_633dl")
+launch_effect = ExtResource("3_xnlny")
+FlyScene = null
+HorfScene = null
+GaperScene = null

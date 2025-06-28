@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://bijifgv4c1m06"]
+
+[ext_resource type="PackedScene" uid="uid://bkgagd7e8kdpa" path="res://scenes/statues/statues.tscn" id="1_f25c3"]
+[ext_resource type="Script" uid="uid://bq4shvhtgdngk" path="res://second_statues.gd" id="2_ob4q6"]
+
+[node name="SecondStatues" instance=ExtResource("1_f25c3")]
+script = ExtResource("2_ob4q6")

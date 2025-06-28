@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://b3348calwxq67"]
+
+[ext_resource type="PackedScene" uid="uid://b8gvtrfm60t45" path="res://scenes/world/DungeonRooms/Doors/door_down.tscn" id="1_kveal"]
+[ext_resource type="Texture2D" uid="uid://brcb06ryf4inl" path="res://art/tilemap/Doors/LeftDoorEmpty.png" id="2_sgrox"]
+
+[node name="DoorLeft" instance=ExtResource("1_kveal")]
+
+[node name="Marker2D" parent="." index="0"]
+position = Vector2(-102, 0)
+
+[node name="Sprite2D" parent="." index="1"]
+texture = ExtResource("2_sgrox")
+
+[node name="CollisionShape2D" parent="." index="2"]
+position = Vector2(-1, 0)
+rotation = 1.5708

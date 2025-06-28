@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://hhideghp631o"]
+
+[ext_resource type="PackedScene" uid="uid://cevcqrk7nyyi8" path="res://scenes/world/enemy_spawner.tscn" id="1_bpghb"]
+
+[node name="BossSpawner" instance=ExtResource("1_bpghb")]
+FlyScene = null
+HorfScene = null
+GaperScene = null

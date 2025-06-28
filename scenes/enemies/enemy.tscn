@@ -1,0 +1,71 @@
+[gd_scene load_steps=13 format=3 uid="uid://demr2cd0vql4a"]
+
+[ext_resource type="Script" uid="uid://dx8cajmdy18lq" path="res://scenes/enemies/enemy.gd" id="1_6xk8f"]
+[ext_resource type="Script" uid="uid://jx8w5d5q233p" path="res://components/move_component.gd" id="2_8e3ao"]
+[ext_resource type="Script" uid="uid://c7iye67scbdhy" path="res://components/stats_component.gd" id="2_n7575"]
+[ext_resource type="Script" uid="uid://c17t5601anag5" path="res://components/hurtbox_component.gd" id="3_fcftc"]
+[ext_resource type="Script" uid="uid://dlscyyi4u02gi" path="res://components/hitbox_component.gd" id="4_lu5c6"]
+[ext_resource type="Script" uid="uid://dorc6owjjuhf7" path="res://components/hurt_component.gd" id="5_jt03m"]
+[ext_resource type="Script" uid="uid://funxt4yccdvo" path="res://components/destroyed_component.gd" id="6_n7575"]
+[ext_resource type="Script" uid="uid://b0krotm7yt12e" path="res://components/spawner_component.gd" id="7_qch6t"]
+[ext_resource type="Script" uid="uid://dmum3lx3vcgkh" path="res://components/state_machine.gd" id="9_qch6t"]
+[ext_resource type="Script" uid="uid://b5fyknewgitsv" path="res://components/flash_component.gd" id="10_y5th1"]
+[ext_resource type="PackedScene" uid="uid://b2njog8sv754b" path="res://scenes/soft_collision.tscn" id="11_tihwb"]
+[ext_resource type="PackedScene" uid="uid://0s058vsi7x44" path="res://UI/launch_effect_spawner_component.tscn" id="12_p7w77"]
+
+[node name="Enemy" type="CharacterBody2D"]
+y_sort_enabled = true
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_6xk8f")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+
+[node name="StatsComponent" type="Node" parent="."]
+script = ExtResource("2_n7575")
+soul_health = 0
+
+[node name="MoveComponent" type="Node" parent="." node_paths=PackedStringArray("actor")]
+script = ExtResource("2_8e3ao")
+actor = NodePath("..")
+metadata/_custom_type_script = "uid://jx8w5d5q233p"
+
+[node name="HurtboxComponent" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("3_fcftc")
+
+[node name="HitboxComponent" type="Area2D" parent="."]
+collision_layer = 0
+script = ExtResource("4_lu5c6")
+metadata/_custom_type_script = "uid://dlscyyi4u02gi"
+
+[node name="HurtComponent" type="Node" parent="." node_paths=PackedStringArray("stats_component", "hurtbox_component")]
+script = ExtResource("5_jt03m")
+stats_component = NodePath("../StatsComponent")
+hurtbox_component = NodePath("../HurtboxComponent")
+
+[node name="DestroyedComponent" type="Node" parent="." node_paths=PackedStringArray("actor", "stats_component")]
+script = ExtResource("6_n7575")
+actor = NodePath("..")
+stats_component = NodePath("../StatsComponent")
+
+[node name="SpawnerComponent" type="Node2D" parent="."]
+script = ExtResource("7_qch6t")
+metadata/_custom_type_script = "uid://b0krotm7yt12e"
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource("9_qch6t")
+
+[node name="FlashComponent" type="Node" parent="." node_paths=PackedStringArray("sprite")]
+script = ExtResource("10_y5th1")
+sprite = NodePath("../Sprite2D")
+metadata/_custom_type_script = "uid://b5fyknewgitsv"
+
+[node name="SoftCollision" parent="." instance=ExtResource("11_tihwb")]
+
+[node name="LaunchEffectSpawnerComponent" parent="." instance=ExtResource("12_p7w77")]
+
+[node name="Marker2D" type="Marker2D" parent="."]

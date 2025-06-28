@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://bsc0tl4snx48p"]
+
+[ext_resource type="PackedScene" uid="uid://cevcqrk7nyyi8" path="res://scenes/world/enemy_spawner.tscn" id="1_5y4ii"]
+
+[node name="EnemySpawnerRoom6" instance=ExtResource("1_5y4ii")]

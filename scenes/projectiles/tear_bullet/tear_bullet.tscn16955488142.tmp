@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://cgxbtl5nfwvc1"]
+
+[ext_resource type="PackedScene" uid="uid://bx0isrp8rlmt3" path="res://scenes/projectiles/projectile.tscn" id="1_rm7u4"]
+[ext_resource type="Texture2D" uid="uid://b4k2rlaufrxcg" path="res://icon.svg" id="2_vocvx"]
+
+[sub_resource type="GDScript" id="GDScript_1d3nr"]
+script/source = "class_name TearBulletProjectile
+extends Projectile
+
+var direction: Vector2
+@onready var hitbox_component: HitboxComponent = $HitboxComponent
+
+func _ready() -> void:
+	super()
+	
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1d3nr"]
+size = Vector2(8, 8)
+
+[node name="TearBullet" instance=ExtResource("1_rm7u4")]
+script = SubResource("GDScript_1d3nr")
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_vocvx")
+
+[node name="CollisionShape2D" parent="HitboxComponent" index="0"]
+shape = SubResource("RectangleShape2D_1d3nr")
+
+[node name="MoveComponent" parent="." index="2"]
+speed = 200

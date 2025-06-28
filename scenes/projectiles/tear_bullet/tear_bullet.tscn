@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://cgxbtl5nfwvc1"]
+
+[ext_resource type="PackedScene" uid="uid://bx0isrp8rlmt3" path="res://scenes/projectiles/projectile.tscn" id="1_v745g"]
+[ext_resource type="Resource" uid="uid://cvi2hq3bn485q" path="res://resources/stats/player/player_stats.tres" id="2_pk5ie"]
+[ext_resource type="Texture2D" uid="uid://rlhporb2d7g0" path="res://scenes/projectiles/tear_bullet/tear_projectile.png" id="4_pk5ie"]
+
+[sub_resource type="GDScript" id="GDScript_1d3nr"]
+script/source = "class_name TearBulletProjectile
+extends Projectile
+
+func _ready() -> void:
+	super()
+	
+
+	
+	
+"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pk5ie"]
+radius = 7.07107
+
+[node name="TearBullet" instance=ExtResource("1_v745g")]
+scale = Vector2(0.5, 0.5)
+script = SubResource("GDScript_1d3nr")
+sender_stats = ExtResource("2_pk5ie")
+
+[node name="Sprite2D" parent="." index="0"]
+modulate = Color(0.585104, 1, 0.999765, 1)
+texture = ExtResource("4_pk5ie")
+
+[node name="HitboxComponent" parent="." index="1"]
+collision_layer = 8
+
+[node name="CollisionShape2D" parent="HitboxComponent" index="0"]
+visible = false
+shape = SubResource("CircleShape2D_pk5ie")
+
+[node name="MoveComponent" parent="." index="2"]
+speed = 200

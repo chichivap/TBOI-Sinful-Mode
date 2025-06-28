@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://bdm5yqxux464q"]
+
+[ext_resource type="PackedScene" uid="uid://bkgagd7e8kdpa" path="res://scenes/statues/statues.tscn" id="1_ixuaa"]
+[ext_resource type="Script" uid="uid://s8uq7v6hdnm1" path="res://scenes/statues/RoomsStatues/seventh_statues.gd" id="2_28bt4"]
+
+[node name="SeventhStatues" instance=ExtResource("1_ixuaa")]
+script = ExtResource("2_28bt4")

@@ -1,0 +1,337 @@
+[gd_scene load_steps=32 format=3 uid="uid://c5uam18jur2lr"]
+
+[ext_resource type="Script" uid="uid://bsvvfsje8jadr" path="res://scenes/player/player.gd" id="1_8afob"]
+[ext_resource type="Script" uid="uid://jx8w5d5q233p" path="res://components/move_component.gd" id="2_dovo2"]
+[ext_resource type="Script" uid="uid://picye67ojt5y" path="res://components/move_input_component.gd" id="3_gmlin"]
+[ext_resource type="Resource" uid="uid://cvi2hq3bn485q" path="res://resources/stats/player/player_stats.tres" id="4_p47bc"]
+[ext_resource type="Texture2D" uid="uid://du7vleosodo2n" path="res://art/characters/Faust/body-sheet.png" id="5_fm80t"]
+[ext_resource type="Script" uid="uid://c17t5601anag5" path="res://components/hurtbox_component.gd" id="6_75vfm"]
+[ext_resource type="Texture2D" uid="uid://b74jdvkvamc3s" path="res://art/characters/Faust/head-sheet.png" id="6_gx1jg"]
+[ext_resource type="Script" uid="uid://cixa1e6ab0wvu" path="res://components/spawner_projectile_component.gd" id="7_0owmy"]
+[ext_resource type="PackedScene" uid="uid://cgxbtl5nfwvc1" path="res://scenes/projectiles/tear_bullet/tear_bullet.tscn" id="8_qek5x"]
+[ext_resource type="Script" uid="uid://c7iye67scbdhy" path="res://components/stats_component.gd" id="9_fm80t"]
+[ext_resource type="Script" uid="uid://dorc6owjjuhf7" path="res://components/hurt_component.gd" id="10_gx1jg"]
+[ext_resource type="Script" uid="uid://b0krotm7yt12e" path="res://components/spawner_component.gd" id="12_fcs02"]
+[ext_resource type="PackedScene" uid="uid://2d02kvu2nx6x" path="res://scenes/player/faust_death_scene.tscn" id="14_myrg7"]
+[ext_resource type="Script" uid="uid://ijlfnfhje486" path="res://components/shake_component.gd" id="14_ugbui"]
+[ext_resource type="Script" uid="uid://b5fyknewgitsv" path="res://components/flash_component.gd" id="15_fcs02"]
+[ext_resource type="Script" uid="uid://58252oekiyda" path="res://components/variable_pitch_audio_stream_player.gd" id="17_kvlxm"]
+[ext_resource type="AudioStream" uid="uid://b30cmihl3hf5t" path="res://sounds/Faust/Splatter/splatter 0.wav" id="17_uf5tr"]
+[ext_resource type="Script" uid="uid://b80hgrvkpu75h" path="res://components/delete_component.gd" id="19_lgqa7"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_p47bc"]
+radius = 6.0
+height = 12.0
+
+[sub_resource type="Animation" id="Animation_gx1jg"]
+resource_name = "head_down"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FullBody/Head:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [7]
+}
+
+[sub_resource type="Animation" id="Animation_myrg7"]
+resource_name = "head_left"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FullBody/Head:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="Animation" id="Animation_fcs02"]
+resource_name = "head_right"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FullBody/Head:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [5]
+}
+
+[sub_resource type="Animation" id="Animation_kvlxm"]
+resource_name = "head_up"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FullBody/Head:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+
+[sub_resource type="Animation" id="Animation_yj68g"]
+resource_name = "idle"
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FullBody/Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [20]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fcs02"]
+_data = {
+&"head_down": SubResource("Animation_gx1jg"),
+&"head_left": SubResource("Animation_myrg7"),
+&"head_right": SubResource("Animation_fcs02"),
+&"head_up": SubResource("Animation_kvlxm"),
+&"idle": SubResource("Animation_yj68g")
+}
+
+[sub_resource type="Animation" id="Animation_ioxgp"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FullBody/Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [9]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("FullBody/Body:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_ugbui"]
+resource_name = "body_left"
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FullBody/Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [9, 8, 7, 6, 5, 4, 3, 2, 1, 0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("FullBody/Body:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_cnsyf"]
+resource_name = "body_right"
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FullBody/Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [9, 8, 7, 6, 5, 4, 3, 2, 1, 0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("FullBody/Body:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_007i1"]
+resource_name = "body_up"
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FullBody/Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [20, 21, 22, 23, 24, 25, 26, 27, 28, 29]
+}
+
+[sub_resource type="Animation" id="Animation_uf5tr"]
+resource_name = "idle"
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FullBody/Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [20]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cnsyf"]
+_data = {
+&"RESET": SubResource("Animation_ioxgp"),
+&"body_left": SubResource("Animation_ugbui"),
+&"body_right": SubResource("Animation_cnsyf"),
+&"body_up": SubResource("Animation_007i1"),
+&"idle": SubResource("Animation_uf5tr")
+}
+
+[node name="Player" type="CharacterBody2D"]
+y_sort_enabled = true
+collision_mask = 0
+script = ExtResource("1_8afob")
+
+[node name="MoveComponent" type="Node" parent="." node_paths=PackedStringArray("actor")]
+script = ExtResource("2_dovo2")
+stats = ExtResource("4_p47bc")
+actor = NodePath("..")
+
+[node name="MoveInputComponent" type="Node" parent="." node_paths=PackedStringArray("move_component")]
+script = ExtResource("3_gmlin")
+stats = ExtResource("4_p47bc")
+move_component = NodePath("../MoveComponent")
+
+[node name="FullBody" type="Node2D" parent="."]
+metadata/_edit_group_ = true
+
+[node name="Body" type="Sprite2D" parent="FullBody"]
+texture = ExtResource("5_fm80t")
+flip_h = true
+hframes = 10
+vframes = 3
+frame = 9
+
+[node name="Head" type="Sprite2D" parent="FullBody"]
+position = Vector2(0, -15)
+texture = ExtResource("6_gx1jg")
+hframes = 8
+frame = 7
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(0, 2)
+shape = SubResource("CapsuleShape2D_p47bc")
+
+[node name="HurtboxComponent" type="Area2D" parent="."]
+collision_mask = 0
+script = ExtResource("6_75vfm")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="HurtboxComponent"]
+visible = false
+position = Vector2(0, 2)
+shape = SubResource("CapsuleShape2D_p47bc")
+
+[node name="SpawnerProjectileComponent" type="Node2D" parent="."]
+script = ExtResource("7_0owmy")
+scene = ExtResource("8_qek5x")
+
+[node name="FireRate" type="Timer" parent="."]
+wait_time = 0.45
+
+[node name="StatsComponent" type="Node" parent="."]
+script = ExtResource("9_fm80t")
+
+[node name="HurtComponent" type="Node" parent="." node_paths=PackedStringArray("stats_component", "hurtbox_component")]
+script = ExtResource("10_gx1jg")
+stats_component = NodePath("../StatsComponent")
+hurtbox_component = NodePath("../HurtboxComponent")
+
+[node name="DeathSpawnerComponent" type="Node2D" parent="."]
+script = ExtResource("12_fcs02")
+scene = ExtResource("14_myrg7")
+metadata/_custom_type_script = "uid://b0krotm7yt12e"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_fcs02")
+}
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_cnsyf")
+}
+
+[node name="ShakeComponent" type="Node" parent="." node_paths=PackedStringArray("node")]
+script = ExtResource("14_ugbui")
+node = NodePath("../FullBody")
+
+[node name="FlashComponent" type="Node" parent="." node_paths=PackedStringArray("sprite")]
+script = ExtResource("15_fcs02")
+sprite = NodePath("../FullBody/Head")
+flash_duration = 0.01
+metadata/_custom_type_script = "uid://b5fyknewgitsv"
+
+[node name="FlashComponent2" type="Node" parent="." node_paths=PackedStringArray("sprite")]
+script = ExtResource("15_fcs02")
+sprite = NodePath("../FullBody/Body")
+flash_duration = 0.01
+metadata/_custom_type_script = "uid://b5fyknewgitsv"
+
+[node name="VariablePitchAudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("17_uf5tr")
+volume_db = -45.0
+script = ExtResource("17_kvlxm")
+
+[node name="DeleteComponent" type="Node" parent="." node_paths=PackedStringArray("actor", "stats_component", "destroy_effect_spawner_component")]
+script = ExtResource("19_lgqa7")
+actor = NodePath("..")
+stats_component = NodePath("../StatsComponent")
+destroy_effect_spawner_component = NodePath("../DeathSpawnerComponent")

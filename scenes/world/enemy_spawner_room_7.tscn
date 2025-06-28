@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://srdhoqwiob8p"]
+
+[ext_resource type="PackedScene" uid="uid://cevcqrk7nyyi8" path="res://scenes/world/enemy_spawner.tscn" id="1_lneg1"]
+[ext_resource type="Script" uid="uid://cr0wcil1eawfs" path="res://scenes/world/enemy_spawner_room_7.gd" id="2_ekhe0"]
+
+[node name="EnemySpawnerRoom7" instance=ExtResource("1_lneg1")]
+script = ExtResource("2_ekhe0")
+FlyScene = null
+HorfScene = null
+GaperScene = null

@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Stats" load_steps=2 format=3 uid="uid://cvi2hq3bn485q"]
+
+[ext_resource type="Script" uid="uid://cyajhgss4vc73" path="res://resources/stats/stats.gd" id="1_7kogv"]
+
+[resource]
+script = ExtResource("1_7kogv")
+max_speed = 150
+acceleration = 3000
+friction = 1000
+strength = 3
+speed = 1
+projectile_speed = 1
+metadata/_custom_type_script = "uid://cyajhgss4vc73"

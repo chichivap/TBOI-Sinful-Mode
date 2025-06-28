@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://cre525qw8hghf"]
+
+[ext_resource type="PackedScene" uid="uid://b3348calwxq67" path="res://scenes/world/DungeonRooms/Doors/door_left.tscn" id="1_dp2or"]
+[ext_resource type="Texture2D" uid="uid://cxumv0e5l3h40" path="res://art/tilemap/Doors/RightDoorEmpty.png" id="2_dwil0"]
+
+[node name="DoorRight" instance=ExtResource("1_dp2or")]
+
+[node name="Marker2D" parent="." index="0"]
+position = Vector2(102, 0)
+
+[node name="Sprite2D" parent="." index="1"]
+texture = ExtResource("2_dwil0")

@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://dvk3u8vlxxlyg"]
+
+[ext_resource type="PackedScene" uid="uid://demr2cd0vql4a" path="res://scenes/enemies/enemy.tscn" id="1_lcafg"]
+
+[sub_resource type="GDScript" id="GDScript_lcafg"]
+script/source = "class_name EnemyTest
+extends Enemy
+
+@onready var stats_component: StatsComponent = $StatsComponent
+@onready var move_component: MoveComponent = $MoveComponent
+@onready var hurtbox_component: HurtboxComponent = $HurtboxComponent
+@onready var hitbox_component: HitboxComponent = $HitboxComponent
+@onready var destroyed_component: DestroyedComponent = $DestroyedComponent
+
+func _ready() -> void:
+	stats_component.no_health.connect(queue_free)
+	hitbox_component.hit_hurtbox.connect(destroyed_component.destroy.unbind(1))
+"
+
+[node name="Enemy" instance=ExtResource("1_lcafg")]
+script = SubResource("GDScript_lcafg")

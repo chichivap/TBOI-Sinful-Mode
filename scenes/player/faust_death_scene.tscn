@@ -1,0 +1,47 @@
+[gd_scene load_steps=9 format=3 uid="uid://2d02kvu2nx6x"]
+
+[ext_resource type="Script" uid="uid://3li4j0suduus" path="res://components/onetime_animated_effect.gd" id="1_t68xs"]
+[ext_resource type="Texture2D" uid="uid://cr106r3ny2cj1" path="res://art/characters/Faust/DeathEffect.png" id="1_vj4r1"]
+[ext_resource type="AudioStream" uid="uid://bkles8subgget" path="res://sounds/Faust/Death/isaac dies new 2.wav" id="3_ery7b"]
+[ext_resource type="Script" uid="uid://58252oekiyda" path="res://components/variable_pitch_audio_stream_player.gd" id="3_xvdvi"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xvdvi"]
+atlas = ExtResource("1_vj4r1")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ery7b"]
+atlas = ExtResource("1_vj4r1")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nh8f5"]
+atlas = ExtResource("1_vj4r1")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ghkfd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xvdvi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ery7b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nh8f5")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="FaustDeathScene" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_ghkfd")
+frame = 2
+frame_progress = 1.0
+script = ExtResource("1_t68xs")
+
+[node name="VariablePitchAudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_ery7b")
+volume_db = -45.0
+script = ExtResource("3_xvdvi")
+auto_play_with_variance = true

@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://cfxktvdw16hyh"]
+
+[ext_resource type="PackedScene" uid="uid://qq1c1xlid62b" path="res://scenes/statues/statue.tscn" id="1_bwgjf"]
+[ext_resource type="Texture2D" uid="uid://x11qdbl6trr" path="res://art/statues/GluttonyStatue.png" id="2_fcpxy"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fcpxy"]
+radius = 15.0
+
+[node name="GluttonyStatue" instance=ExtResource("1_bwgjf")]
+
+[node name="CollisionShape2D" parent="StaticBody2D" index="0"]
+position = Vector2(0, -5)
+shape = SubResource("CircleShape2D_fcpxy")
+
+[node name="Sprite2D" parent="." index="1"]
+position = Vector2(0, -13)
+texture = ExtResource("2_fcpxy")

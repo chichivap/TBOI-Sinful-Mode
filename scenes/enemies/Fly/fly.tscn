@@ -1,0 +1,80 @@
+[gd_scene load_steps=13 format=3 uid="uid://dh8ccnbn42o4m"]
+
+[ext_resource type="PackedScene" uid="uid://demr2cd0vql4a" path="res://scenes/enemies/enemy.tscn" id="1_4v6d4"]
+[ext_resource type="PackedScene" uid="uid://dhl0e3yygb24g" path="res://scenes/enemies/Fly/death_effect/fly_death_effect.tscn" id="2_dmb7n"]
+[ext_resource type="Script" uid="uid://dgs2v68d3pr5n" path="res://scenes/enemies/Fly/idle_state.gd" id="2_fo6sr"]
+[ext_resource type="Texture2D" uid="uid://3jwl5umhq7kt" path="res://art/characters/Enemies/Fly/monster_010_fly.png" id="2_rthdm"]
+[ext_resource type="Script" uid="uid://klmlnmiwyb42" path="res://scenes/enemies/Fly/fly.gd" id="2_vnanq"]
+[ext_resource type="Resource" uid="uid://bhuqgw1ir1hty" path="res://scenes/enemies/Fly/fly_stats.tres" id="3_3pn61"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3pn61"]
+radius = 4.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rthdm"]
+atlas = ExtResource("2_rthdm")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3pn61"]
+atlas = ExtResource("2_rthdm")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dmb7n"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rthdm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3pn61")
+}],
+"loop": true,
+"name": &"Fly",
+"speed": 30.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vnanq"]
+radius = 5.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jhglp"]
+radius = 3.16228
+
+[node name="Fly" instance=ExtResource("1_4v6d4")]
+script = ExtResource("2_vnanq")
+
+[node name="CollisionShape2D" parent="." index="0"]
+visible = false
+shape = SubResource("CircleShape2D_3pn61")
+
+[node name="Sprite2D" parent="." index="1"]
+sprite_frames = SubResource("SpriteFrames_dmb7n")
+animation = &"Fly"
+autoplay = "Fly"
+
+[node name="StatsComponent" parent="." index="2"]
+black_health = 7
+
+[node name="MoveComponent" parent="." index="3"]
+stats = ExtResource("3_3pn61")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent" index="0"]
+shape = SubResource("CircleShape2D_vnanq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent" index="0"]
+shape = SubResource("CircleShape2D_jhglp")
+debug_color = Color(0.95372, 0.143124, 0.412482, 0.42)
+
+[node name="DestroyedComponent" parent="." index="7" node_paths=PackedStringArray("destroy_effect_spawner_component")]
+destroy_effect_spawner_component = NodePath("../SpawnerComponent")
+
+[node name="SpawnerComponent" parent="." index="8"]
+scene = ExtResource("2_dmb7n")
+
+[node name="StateMachine" parent="." index="9" node_paths=PackedStringArray("initial_state")]
+initial_state = NodePath("LaunchState")
+
+[node name="LaunchState" type="Node" parent="StateMachine" index="0"]
+script = ExtResource("2_fo6sr")
+state = 1
+
+[node name="FlashComponent" parent="." index="10"]
+flash_duration = 0.05

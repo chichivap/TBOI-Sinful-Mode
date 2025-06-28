@@ -1,0 +1,74 @@
+[gd_scene load_steps=4 format=3 uid="uid://cgsbm4ytk6bi"]
+
+[ext_resource type="Script" uid="uid://c34fdaru0e2h3" path="res://scenes/main_scene.gd" id="1_w2twt"]
+[ext_resource type="FontFile" uid="uid://bf6k3dx38vgy6" path="res://UI/fonts/IsaacGame.ttf" id="2_pw63i"]
+[ext_resource type="AudioStream" uid="uid://dxtxnihxw7c6o" path="res://sounds/Music/MainMenu/title screen.ogg" id="3_7ykc4"]
+
+[node name="MainScene" type="Node2D"]
+script = ExtResource("1_w2twt")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TheBindingOf" type="Label" parent="Control"]
+z_index = 1
+layout_mode = 0
+offset_left = 30.0
+offset_top = 57.0
+offset_right = 226.0
+offset_bottom = 80.0
+theme_override_colors/font_color = Color(0.88, 0.8096, 0.6688, 1)
+theme_override_fonts/font = ExtResource("2_pw63i")
+text = "THE BINDING OF "
+
+[node name="ISAAC" type="Label" parent="Control"]
+z_index = 1
+layout_mode = 0
+offset_left = 34.0
+offset_top = 84.0
+offset_right = 230.0
+offset_bottom = 107.0
+scale = Vector2(3.705, 3.705)
+theme_override_colors/font_color = Color(0.88, 0.8096, 0.6688, 1)
+theme_override_fonts/font = ExtResource("2_pw63i")
+text = "ISAAC"
+
+[node name="Mode" type="Label" parent="Control"]
+z_index = 1
+layout_mode = 0
+offset_left = 35.0
+offset_top = 146.0
+offset_right = 231.0
+offset_bottom = 169.0
+scale = Vector2(1.075, 1.075)
+theme_override_colors/font_color = Color(0.55545, 0.4209, 0.69, 1)
+theme_override_fonts/font = ExtResource("2_pw63i")
+text = "Sinful Mode"
+
+[node name="Press Space" type="Label" parent="Control"]
+z_index = 1
+layout_mode = 0
+offset_left = 310.0
+offset_top = 285.0
+offset_right = 506.0
+offset_bottom = 308.0
+scale = Vector2(1.075, 1.075)
+theme_override_colors/font_color = Color(0.878431, 0.807843, 0.670588, 1)
+theme_override_fonts/font = ExtResource("2_pw63i")
+text = "Press Space"
+
+[node name="ColorRect" type="ColorRect" parent="Control"]
+layout_mode = 0
+offset_right = 481.0
+offset_bottom = 322.0
+color = Color(0.0392157, 0.0392157, 0.0470588, 1)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_7ykc4")
+volume_db = -45.0
+autoplay = true

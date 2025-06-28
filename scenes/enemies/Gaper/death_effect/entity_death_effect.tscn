@@ -1,0 +1,139 @@
+[gd_scene load_steps=22 format=3 uid="uid://cw8tl1j433lft"]
+
+[ext_resource type="Texture2D" uid="uid://d0aeja44lvmpa" path="res://art/characters/Enemies/Wanderer/effect_002_bloodpoof_alt.png" id="1_oc4lk"]
+[ext_resource type="Script" uid="uid://3li4j0suduus" path="res://components/onetime_animated_effect.gd" id="2_dlo0r"]
+[ext_resource type="AudioStream" uid="uid://cfh33px4j0rl" path="res://sounds/Enemies/Death/death burst small 3.wav" id="3_ajdp0"]
+[ext_resource type="Script" uid="uid://58252oekiyda" path="res://components/variable_pitch_audio_stream_player.gd" id="3_jfhyb"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dlo0r"]
+atlas = ExtResource("1_oc4lk")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jfhyb"]
+atlas = ExtResource("1_oc4lk")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ajdp0"]
+atlas = ExtResource("1_oc4lk")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_owup4"]
+atlas = ExtResource("1_oc4lk")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l3o6u"]
+atlas = ExtResource("1_oc4lk")
+region = Rect2(0, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ankyk"]
+atlas = ExtResource("1_oc4lk")
+region = Rect2(64, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yr0ag"]
+atlas = ExtResource("1_oc4lk")
+region = Rect2(128, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f1bmm"]
+atlas = ExtResource("1_oc4lk")
+region = Rect2(192, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ejyma"]
+atlas = ExtResource("1_oc4lk")
+region = Rect2(0, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4x8dq"]
+atlas = ExtResource("1_oc4lk")
+region = Rect2(64, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8yrfs"]
+atlas = ExtResource("1_oc4lk")
+region = Rect2(128, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jpmlr"]
+atlas = ExtResource("1_oc4lk")
+region = Rect2(192, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cavek"]
+atlas = ExtResource("1_oc4lk")
+region = Rect2(0, 192, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dl886"]
+atlas = ExtResource("1_oc4lk")
+region = Rect2(64, 192, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ox01m"]
+atlas = ExtResource("1_oc4lk")
+region = Rect2(128, 192, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e6xmd"]
+atlas = ExtResource("1_oc4lk")
+region = Rect2(192, 192, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_uoyy6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dlo0r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jfhyb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ajdp0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_owup4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l3o6u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ankyk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yr0ag")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f1bmm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ejyma")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4x8dq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8yrfs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jpmlr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cavek")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dl886")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ox01m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e6xmd")
+}],
+"loop": true,
+"name": &"default",
+"speed": 30.0
+}]
+
+[node name="EntityDeathEffect" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_uoyy6")
+autoplay = "default"
+frame = 5
+frame_progress = 0.315456
+script = ExtResource("2_dlo0r")
+
+[node name="VariablePitchAudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_ajdp0")
+volume_db = -45.0
+script = ExtResource("3_jfhyb")
+auto_play_with_variance = true

@@ -1,0 +1,22 @@
+[gd_scene load_steps=2 format=3 uid="uid://bpkdfkljub8x5"]
+
+[ext_resource type="FontFile" uid="uid://bf6k3dx38vgy6" path="res://UI/fonts/IsaacGame.ttf" id="1_2fwl4"]
+
+[node name="UI" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="BlackHealthLabel" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_2fwl4")
+
+[node name="SoulLabel" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_2fwl4")

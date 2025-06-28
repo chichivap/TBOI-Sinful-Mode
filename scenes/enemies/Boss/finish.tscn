@@ -1,0 +1,30 @@
+[gd_scene load_steps=2 format=3 uid="uid://bkvcc5ilvqbdb"]
+
+[ext_resource type="FontFile" uid="uid://bf6k3dx38vgy6" path="res://UI/fonts/IsaacGame.ttf" id="1_bbjka"]
+
+[node name="Finish" type="Node2D"]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Mode" type="Label" parent="Control"]
+z_index = 1
+layout_mode = 0
+offset_left = 185.0
+offset_top = 122.0
+offset_right = 381.0
+offset_bottom = 145.0
+scale = Vector2(1.075, 1.075)
+theme_override_colors/font_color = Color(0.55545, 0.4209, 0.69, 1)
+theme_override_fonts/font = ExtResource("1_bbjka")
+text = "Thank you!"
+
+[node name="ColorRect2" type="ColorRect" parent="Control"]
+layout_mode = 0
+offset_top = 1.0
+offset_right = 481.0
+offset_bottom = 323.0
+color = Color(0.0392157, 0.0392157, 0.0470588, 1)

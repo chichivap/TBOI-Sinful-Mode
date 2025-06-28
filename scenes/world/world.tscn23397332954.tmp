@@ -1,0 +1,361 @@
+[gd_scene load_steps=33 format=3 uid="uid://dx6vuy4g7inrf"]
+
+[ext_resource type="Script" uid="uid://1ovgf3tlhmtx" path="res://scenes/world/world.gd" id="1_dlabj"]
+[ext_resource type="PackedScene" uid="uid://c5uam18jur2lr" path="res://scenes/player/player.tscn" id="1_dphjl"]
+[ext_resource type="Script" uid="uid://cq1qj67tgakw6" path="res://scenes/world/camera_2d.gd" id="3_1fp7r"]
+[ext_resource type="PackedScene" uid="uid://wfg1jpx2u7vc" path="res://scenes/world/DungeonRooms/dungeon_room.tscn" id="3_6m72w"]
+[ext_resource type="PackedScene" uid="uid://b8gvtrfm60t45" path="res://scenes/world/DungeonRooms/Doors/door_down.tscn" id="3_t5ptc"]
+[ext_resource type="PackedScene" uid="uid://dtpmfqawnllrx" path="res://scenes/world/DungeonRooms/Doors/door_up.tscn" id="3_v5dby"]
+[ext_resource type="PackedScene" uid="uid://b3348calwxq67" path="res://scenes/world/DungeonRooms/Doors/door_left.tscn" id="4_t5ptc"]
+[ext_resource type="PackedScene" uid="uid://cre525qw8hghf" path="res://scenes/world/DungeonRooms/Doors/door_right.tscn" id="5_bq33v"]
+[ext_resource type="Script" uid="uid://q1nsm6qyjmc" path="res://scenes/world/DungeonRooms/dungeon_room2.gd" id="5_mxkvs"]
+[ext_resource type="PackedScene" uid="uid://d368mav5vc8k4" path="res://scenes/enemies/Gaper/Gaper.tscn" id="5_ues17"]
+[ext_resource type="PackedScene" uid="uid://3v488pp0urrg" path="res://scenes/world/enemy_spawner_room_1.tscn" id="10_5qq27"]
+[ext_resource type="Script" uid="uid://byxq0y07jcg6x" path="res://scenes/world/reward_c_omponent.gd" id="11_6hctx"]
+[ext_resource type="PackedScene" uid="uid://bijifgv4c1m06" path="res://scenes/statues/RoomsStatues/second_statues.tscn" id="11_srmg5"]
+[ext_resource type="PackedScene" uid="uid://cp4g5olxpmfsg" path="res://scenes/world/enemy_spawner_room_3.tscn" id="12_rwifv"]
+[ext_resource type="PackedScene" uid="uid://bjnh6hd5nobi" path="res://scenes/statues/RoomsStatues/third_statues.tscn" id="12_srmg5"]
+[ext_resource type="Resource" uid="uid://cvi2hq3bn485q" path="res://resources/stats/player/player_stats.tres" id="12_ues17"]
+[ext_resource type="Script" uid="uid://c4c7fml74x0mb" path="res://scenes/world/enemy_spawner_room_3.gd" id="13_ckok1"]
+[ext_resource type="Script" uid="uid://dl3ys7u1okgrt" path="res://scenes/world/DungeonRooms/dungeon_room_6.gd" id="13_m114p"]
+[ext_resource type="PackedScene" uid="uid://biiowict51d3s" path="res://scenes/statues/RoomsStatues/sixth_statues.tscn" id="13_umvgx"]
+[ext_resource type="PackedScene" uid="uid://bsc0tl4snx48p" path="res://scenes/world/enemy_spawner_room_6.tscn" id="15_bt7bg"]
+[ext_resource type="PackedScene" uid="uid://bdm5yqxux464q" path="res://scenes/statues/RoomsStatues/seventh_statues.tscn" id="15_m114p"]
+[ext_resource type="Script" uid="uid://7cstqadviyk7" path="res://scenes/world/enemy_spawner_room_6.gd" id="16_wbwoo"]
+[ext_resource type="PackedScene" uid="uid://c528cxipjtiou" path="res://scenes/world/Rock/rock.tscn" id="17_wbwoo"]
+[ext_resource type="Script" uid="uid://d3brb2gvknh8n" path="res://scenes/world/DungeonRooms/dungeon_room_7.gd" id="18_tytul"]
+[ext_resource type="PackedScene" uid="uid://srdhoqwiob8p" path="res://scenes/world/enemy_spawner_room_7.tscn" id="20_t634p"]
+[ext_resource type="PackedScene" uid="uid://chs3phgxoswr8" path="res://scenes/enemies/Horf/horf.tscn" id="21_6hctx"]
+[ext_resource type="PackedScene" uid="uid://bpkdfkljub8x5" path="res://UI/ui.tscn" id="24_xq18t"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_1yooq"]
+vertices = PackedVector2Array(406.031, 250, 78, 250, 78, 71.9766, 406.969, 71.0078)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(73, 67, 412, 66, 411, 255, 73, 255)])
+agent_radius = 5.0
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_wbwoo"]
+vertices = PackedVector2Array(291, 182.781, 398.258, 73, 402.727, 242.227, 292.602, 241.008, 289.727, 137, 221.578, 91.0703, 220.57, 73, 265.609, 110.648, 78, 244.813, 78, 90.0703, 189.258, 137.422, 292.703, 244.773, 280.953, 188.789, 270.422, 211.344, 269.383, 185.43, 274.578, 185.141, 221.352, 209.758, 214.313, 184.633, 192.68, 183.547, 266.617, 137, 219.133, 112.313, 216.117, 136.344)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(1, 0, 4), PackedInt32Array(5, 6, 1, 7), PackedInt32Array(8, 9, 5, 10), PackedInt32Array(2, 11, 3), PackedInt32Array(12, 0, 3, 13), PackedInt32Array(13, 14, 15, 12), PackedInt32Array(13, 3, 8, 16), PackedInt32Array(17, 16, 8, 18), PackedInt32Array(4, 19, 7, 1), PackedInt32Array(20, 21, 10, 5), PackedInt32Array(5, 7, 20), PackedInt32Array(10, 18, 8)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(68, 80, 211, 81, 210, 63, 408, 63, 413, 252, 283, 255, 280, 147, 257, 147, 256, 121, 228, 122, 225, 146, 200, 147, 202, 174, 222, 175, 229, 200, 260, 201, 259, 176, 277, 175, 406, 249, 68, 255)])
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_x0nq1"]
+vertices = PackedVector2Array(221.641, 191.953, 202.813, 189.969, 201.211, 113, 226.383, 113)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(193, 199, 191, 103, 237, 103, 231, 203)])
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_rwifv"]
+vertices = PackedVector2Array(122.719, 245.094, 30.1016, 245.898, 31.8906, 74.8594, 122, 218.141, 122, 136.461, 225.25, 72.1328, 226.75, 131.469)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 3, 2), PackedInt32Array(4, 2, 5, 6)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(22, 65, 235, 62, 237, 141, 132, 146, 132, 191.836, 132, 218, 133, 255, 20, 256)])
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_ckok1"]
+vertices = PackedVector2Array(114.367, 118.563, 87.2969, 119.789, 54.0703, 82.4922, 98.7422, 76.7266, 167, 87, 210.813, 233.102, -66.1797, 235.891, -60.7578, 166.258, 117.656, 171.313, 208.18, 87, 127.148, 64, 167, 64)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4), PackedInt32Array(5, 6, 7, 8), PackedInt32Array(4, 9, 5, 8, 0), PackedInt32Array(4, 3, 10, 11)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(177, 54, 125, 54, 96, 67, 34, 75, 83, 130, 105, 129, 107, 161, -70, 156, -77, 246, 221, 243, 218, 77, 177, 77)])
+
+[node name="World" type="Node2D" node_paths=PackedStringArray("player")]
+y_sort_enabled = true
+script = ExtResource("1_dlabj")
+player = NodePath("Player")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
+position_smoothing_enabled = true
+position_smoothing_speed = 10.0
+script = ExtResource("3_1fp7r")
+
+[node name="Dungeons" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="DungeonRoom" parent="Dungeons" instance=ExtResource("3_6m72w")]
+y_sort_enabled = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Dungeons/DungeonRoom/Walls" index="0"]
+polygon = PackedVector2Array(58, 72, 73, 61, 145, 61, 160, 67, 175, 61, 219, 58, 208, 26, 18, 25, 18, 311, 209, 310, 209, 262, 171, 262, 157, 252, 143, 263, 74, 263, 57, 249)
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Dungeons/DungeonRoom/Walls" index="1"]
+polygon = PackedVector2Array(209, 263, 307, 263, 322, 254, 335, 264, 407, 264, 426, 250, 426, 73, 405, 61, 336, 61, 321, 68, 300, 58, 254, 58, 269, 26, 452, 27, 455, 304, 209, 309)
+
+[node name="DoorUp" parent="Dungeons/DungeonRoom" instance=ExtResource("3_v5dby")]
+position = Vector2(241, 42)
+
+[node name="DungeonRoom2" parent="Dungeons" instance=ExtResource("3_6m72w")]
+y_sort_enabled = true
+position = Vector2(1, -321)
+script = ExtResource("5_mxkvs")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Dungeons/DungeonRoom2/Walls" index="0"]
+polygon = PackedVector2Array(215, 25, 25, 25, 25, 301, 209, 301, 225, 264, 170, 264, 156, 257, 143, 264, 68, 264, 56, 252, 56, 176, 25, 194, 26, 125, 59, 149, 59, 74, 73, 60, 145, 60, 160, 69, 180, 58, 206, 57)
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Dungeons/DungeonRoom2/Walls" index="1"]
+polygon = PackedVector2Array(255, 263, 308, 263, 320, 255, 335, 264, 410, 264, 426, 253, 426, 189, 451, 186, 451, 139, 428, 145, 428, 71, 410, 58, 334, 58, 323, 69, 304, 59, 205, 59, 214, 27, 458, 28, 456, 293, 266, 292)
+
+[node name="DoorWalls" type="StaticBody2D" parent="Dungeons/DungeonRoom2"]
+collision_layer = 4
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Dungeons/DungeonRoom2/DoorWalls"]
+polygon = PackedVector2Array(57, 180, 60, 136, 42, 137, 48, 274, 440, 273, 439, 112, 430, 111, 429, 269, 56, 265)
+
+[node name="DoorDown" parent="Dungeons/DungeonRoom2" instance=ExtResource("3_t5ptc")]
+position = Vector2(241, 276)
+
+[node name="DoorLeft" parent="Dungeons/DungeonRoom2" instance=ExtResource("4_t5ptc")]
+position = Vector2(43, 161)
+
+[node name="DoorRight" parent="Dungeons/DungeonRoom2" instance=ExtResource("5_bq33v")]
+position = Vector2(440, 165)
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="Dungeons/DungeonRoom2"]
+navigation_polygon = SubResource("NavigationPolygon_1yooq")
+
+[node name="SecondStatues" parent="Dungeons/DungeonRoom2" instance=ExtResource("11_srmg5")]
+position = Vector2(182, 38)
+
+[node name="EnemySpawnerRoom2" parent="Dungeons/DungeonRoom2" node_paths=PackedStringArray("player") instance=ExtResource("10_5qq27")]
+player = NodePath("../../../Player")
+
+[node name="Gaper1Launch" type="Marker2D" parent="Dungeons/DungeonRoom2/EnemySpawnerRoom2"]
+position = Vector2(240, 189)
+
+[node name="DungeonRoom8" parent="Dungeons" instance=ExtResource("3_6m72w")]
+y_sort_enabled = true
+position = Vector2(480, -958)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Dungeons/DungeonRoom8/Walls" index="0"]
+polygon = PackedVector2Array(215, 25, 25, 25, 25, 301, 209, 301, 225, 264, 170, 264, 156, 257, 143, 264, 68, 264, 56, 252, 56, 176, 25, 194, 26, 125, 59, 149, 59, 74, 73, 60, 145, 60, 160, 69, 180, 58, 206, 57)
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Dungeons/DungeonRoom8/Walls" index="1"]
+polygon = PackedVector2Array(254, 260, 307, 263, 322, 254, 335, 264, 407, 264, 426, 250, 426, 73, 405, 61, 336, 61, 321, 68, 300, 58, 206, 58, 208, 27, 452, 27, 455, 304, 266, 306)
+
+[node name="DoorDown" parent="Dungeons/DungeonRoom8" instance=ExtResource("3_t5ptc")]
+position = Vector2(241, 276)
+
+[node name="DungeonRoom3" parent="Dungeons" instance=ExtResource("3_6m72w")]
+y_sort_enabled = true
+position = Vector2(-481, -321)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Dungeons/DungeonRoom3/Walls" index="0"]
+polygon = PackedVector2Array(213, 26, 25, 25, 25, 301, 209, 301, 225, 264, 170, 264, 156, 257, 143, 264, 68, 264, 56, 252, 56, 176, 25, 194, 26, 125, 59, 149, 59, 74, 73, 60, 145, 60, 160, 69, 180, 58, 224, 58)
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Dungeons/DungeonRoom3/Walls" index="1"]
+polygon = PackedVector2Array(261, 56, 307, 57, 319, 66, 338, 57, 408, 57, 422, 72, 422, 150, 454, 137, 450, 188, 422, 175, 424, 251, 410, 264, 335, 264, 323, 256, 306, 264, 215, 264, 213, 301, 452, 302, 453, 26, 268, 26)
+
+[node name="DoorRight" parent="Dungeons/DungeonRoom3" instance=ExtResource("5_bq33v")]
+position = Vector2(439, 161)
+
+[node name="ThirdStatues" parent="Dungeons/DungeonRoom3" instance=ExtResource("12_srmg5")]
+position = Vector2(176, 35)
+
+[node name="EnemySpawnerRoom3" parent="Dungeons/DungeonRoom3" node_paths=PackedStringArray("player") instance=ExtResource("12_rwifv")]
+script = ExtResource("13_ckok1")
+player = NodePath("../../../Player")
+
+[node name="FlyMarker" type="Marker2D" parent="Dungeons/DungeonRoom3/EnemySpawnerRoom3"]
+position = Vector2(329, 124)
+
+[node name="FlyMarker2" type="Marker2D" parent="Dungeons/DungeonRoom3/EnemySpawnerRoom3"]
+position = Vector2(139, 127)
+
+[node name="GaperMarker" type="Marker2D" parent="Dungeons/DungeonRoom3/EnemySpawnerRoom3"]
+position = Vector2(143, 215)
+
+[node name="GaperMarker2" type="Marker2D" parent="Dungeons/DungeonRoom3/EnemySpawnerRoom3"]
+position = Vector2(330, 220)
+
+[node name="GaperMarker3" type="Marker2D" parent="Dungeons/DungeonRoom3/EnemySpawnerRoom3"]
+position = Vector2(240, 246)
+
+[node name="GaperMarker4" type="Marker2D" parent="Dungeons/DungeonRoom3/EnemySpawnerRoom3"]
+position = Vector2(241, 189)
+
+[node name="HorfMarker" type="Marker2D" parent="Dungeons/DungeonRoom3/EnemySpawnerRoom3"]
+position = Vector2(287, 173)
+
+[node name="HorfMarker2" type="Marker2D" parent="Dungeons/DungeonRoom3/EnemySpawnerRoom3"]
+position = Vector2(189, 175)
+
+[node name="Rocks" type="Node2D" parent="Dungeons/DungeonRoom3"]
+
+[node name="Rock" parent="Dungeons/DungeonRoom3/Rocks" instance=ExtResource("17_wbwoo")]
+position = Vector2(241, 144)
+
+[node name="Rock2" parent="Dungeons/DungeonRoom3/Rocks" instance=ExtResource("17_wbwoo")]
+position = Vector2(146, 173)
+
+[node name="Rock3" parent="Dungeons/DungeonRoom3/Rocks" instance=ExtResource("17_wbwoo")]
+position = Vector2(330, 173)
+
+[node name="DungeonRoom6" parent="Dungeons" instance=ExtResource("3_6m72w")]
+y_sort_enabled = true
+position = Vector2(479, -319)
+script = ExtResource("13_m114p")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Dungeons/DungeonRoom6/Walls" index="0"]
+polygon = PackedVector2Array(213, 26, 25, 25, 25, 301, 209, 301, 225, 264, 170, 264, 156, 257, 143, 264, 68, 264, 56, 252, 56, 176, 25, 194, 26, 125, 59, 149, 59, 74, 73, 60, 145, 60, 160, 69, 180, 58, 224, 58)
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Dungeons/DungeonRoom6/Walls" index="1"]
+polygon = PackedVector2Array(261, 56, 307, 57, 319, 66, 338, 57, 408, 57, 422, 72, 422, 150, 454, 137, 450, 188, 423, 152, 424, 251, 410, 264, 335, 264, 323, 256, 306, 264, 215, 264, 213, 301, 452, 302, 453, 26, 268, 26)
+
+[node name="CollisionPolygon2D" parent="Dungeons/DungeonRoom6/ProjectileDetector" index="0"]
+polygon = PackedVector2Array(70, 62, 58, 77, 59, 254, 67, 267, 145, 268, 159, 259, 176, 270, 309, 270, 323, 261, 340, 270, 412, 271, 429, 257, 429, 224.8, 429, 70, 408, 58, 336, 58, 326, 70, 297, 61, 174, 60, 152, 70, 139, 61, 69, 60, 68, 25, 450, 30, 449, 301, 31, 299, 31, 39)
+
+[node name="DoorLeft" parent="Dungeons/DungeonRoom6" instance=ExtResource("4_t5ptc")]
+position = Vector2(43, 161)
+
+[node name="DoorUp" parent="Dungeons/DungeonRoom6" instance=ExtResource("3_v5dby")]
+position = Vector2(241, 42)
+
+[node name="SixthStatues" parent="Dungeons/DungeonRoom6" instance=ExtResource("13_umvgx")]
+position = Vector2(76, 36)
+
+[node name="DoorWalls" type="StaticBody2D" parent="Dungeons/DungeonRoom6"]
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Dungeons/DungeonRoom6/DoorWalls"]
+polygon = PackedVector2Array(60, 184, 57, 54, 264, 60, 231, 41, 42, 49, 49, 191)
+
+[node name="EnemySpawnerRoom6" parent="Dungeons/DungeonRoom6" node_paths=PackedStringArray("player") instance=ExtResource("15_bt7bg")]
+script = ExtResource("16_wbwoo")
+player = NodePath("../../../Player")
+
+[node name="Fly1Mark" type="Marker2D" parent="Dungeons/DungeonRoom6/EnemySpawnerRoom6"]
+position = Vector2(308, 203)
+
+[node name="Gaper1Mark" type="Marker2D" parent="Dungeons/DungeonRoom6/EnemySpawnerRoom6"]
+position = Vector2(136, 218)
+
+[node name="Gaper2Mark" type="Marker2D" parent="Dungeons/DungeonRoom6/EnemySpawnerRoom6"]
+position = Vector2(337, 119)
+
+[node name="Fly2Mark" type="Marker2D" parent="Dungeons/DungeonRoom6/EnemySpawnerRoom6"]
+position = Vector2(136, 136)
+
+[node name="Rocks" type="Node2D" parent="Dungeons/DungeonRoom6"]
+
+[node name="Rock" parent="Dungeons/DungeonRoom6/Rocks" instance=ExtResource("17_wbwoo")]
+position = Vector2(241, 160)
+
+[node name="Rock2" parent="Dungeons/DungeonRoom6/Rocks" instance=ExtResource("17_wbwoo")]
+position = Vector2(266, 160)
+
+[node name="Rock3" parent="Dungeons/DungeonRoom6/Rocks" instance=ExtResource("17_wbwoo")]
+position = Vector2(216, 160)
+
+[node name="Rock4" parent="Dungeons/DungeonRoom6/Rocks" instance=ExtResource("17_wbwoo")]
+position = Vector2(241, 135)
+
+[node name="Rock5" parent="Dungeons/DungeonRoom6/Rocks" instance=ExtResource("17_wbwoo")]
+position = Vector2(241, 185)
+
+[node name="Rock6" parent="Dungeons/DungeonRoom6/Rocks" instance=ExtResource("17_wbwoo")]
+position = Vector2(241, 185)
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="Dungeons/DungeonRoom6"]
+navigation_polygon = SubResource("NavigationPolygon_wbwoo")
+
+[node name="DungeonRoom7" parent="Dungeons" instance=ExtResource("3_6m72w")]
+y_sort_enabled = true
+position = Vector2(480, -639)
+script = ExtResource("18_tytul")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Dungeons/DungeonRoom7/Walls" index="0"]
+polygon = PackedVector2Array(213, 26, 25, 25, 25, 301, 209, 301, 222, 264, 170, 264, 156, 257, 143, 264, 68, 264, 56, 252, 56, 151, 28, 121, 26, 125, 59, 149, 59, 74, 73, 60, 145, 60, 160, 69, 180, 58, 221, 56)
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Dungeons/DungeonRoom7/Walls" index="1"]
+polygon = PackedVector2Array(261, 56, 307, 57, 319, 66, 338, 57, 408, 57, 422, 72, 422, 150, 454, 137, 444, 135, 422, 153, 424, 251, 410, 264, 335, 264, 323, 256, 306, 264, 260, 263, 272, 297, 452, 302, 453, 26, 268, 26)
+
+[node name="CollisionShape2D" parent="Dungeons/DungeonRoom7/PlayerDetector" index="0"]
+position = Vector2(247, 162)
+
+[node name="DoorDown" parent="Dungeons/DungeonRoom7" instance=ExtResource("3_t5ptc")]
+position = Vector2(243, 275)
+
+[node name="DoorUp" parent="Dungeons/DungeonRoom7" instance=ExtResource("3_v5dby")]
+position = Vector2(241, 42)
+
+[node name="SeventhStatues" parent="Dungeons/DungeonRoom7" instance=ExtResource("15_m114p")]
+position = Vector2(284, 39)
+
+[node name="DoorWalls" type="StaticBody2D" parent="Dungeons/DungeonRoom7"]
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Dungeons/DungeonRoom7/DoorWalls"]
+polygon = PackedVector2Array(214, 258, 271, 259, 258, 271, 215, 267, 46, 271, 49, 47, 267, 49, 266, 56, 57, 55, 63, 263)
+
+[node name="EnemySpawnerRoom7" parent="Dungeons/DungeonRoom7" node_paths=PackedStringArray("player") instance=ExtResource("20_t634p")]
+player = NodePath("../../../Player")
+HorfScene = ExtResource("21_6hctx")
+GaperScene = ExtResource("5_ues17")
+
+[node name="Horf1Launch" type="Marker2D" parent="Dungeons/DungeonRoom7/EnemySpawnerRoom7"]
+position = Vector2(238, 157)
+
+[node name="Horf2Launch" type="Marker2D" parent="Dungeons/DungeonRoom7/EnemySpawnerRoom7"]
+position = Vector2(345, 220)
+
+[node name="Horf3Launch" type="Marker2D" parent="Dungeons/DungeonRoom7/EnemySpawnerRoom7"]
+position = Vector2(145, 219)
+
+[node name="Gaper1Launch" type="Marker2D" parent="Dungeons/DungeonRoom7/EnemySpawnerRoom7"]
+position = Vector2(382, 163)
+
+[node name="Gaper2Launch" type="Marker2D" parent="Dungeons/DungeonRoom7/EnemySpawnerRoom7"]
+position = Vector2(92, 166)
+
+[node name="Gaper3Launch" type="Marker2D" parent="Dungeons/DungeonRoom7/EnemySpawnerRoom7"]
+position = Vector2(240, 242)
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="Dungeons/DungeonRoom7"]
+position = Vector2(1, 0)
+navigation_polygon = SubResource("NavigationPolygon_x0nq1")
+
+[node name="NavigationRegion2D2" type="NavigationRegion2D" parent="Dungeons/DungeonRoom7"]
+position = Vector2(49, 2)
+navigation_polygon = SubResource("NavigationPolygon_x0nq1")
+
+[node name="NavigationRegion2D3" type="NavigationRegion2D" parent="Dungeons/DungeonRoom7"]
+position = Vector2(49, 2)
+navigation_polygon = SubResource("NavigationPolygon_rwifv")
+
+[node name="NavigationRegion2D4" type="NavigationRegion2D" parent="Dungeons/DungeonRoom7"]
+position = Vector2(196, 12)
+navigation_polygon = SubResource("NavigationPolygon_ckok1")
+
+[node name="Rocks" type="Node2D" parent="Dungeons/DungeonRoom7"]
+
+[node name="Rock" parent="Dungeons/DungeonRoom7/Rocks" instance=ExtResource("17_wbwoo")]
+position = Vector2(238, 158)
+
+[node name="Rock8" parent="Dungeons/DungeonRoom7/Rocks" instance=ExtResource("17_wbwoo")]
+position = Vector2(190, 158)
+
+[node name="Rock3" parent="Dungeons/DungeonRoom7/Rocks" instance=ExtResource("17_wbwoo")]
+position = Vector2(286, 158)
+
+[node name="Player" parent="." instance=ExtResource("1_dphjl")]
+z_index = 1
+position = Vector2(199, 190)
+collision_mask = 4
+
+[node name="Marker2D" type="Marker2D" parent="."]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="UI" parent="CanvasLayer" instance=ExtResource("24_xq18t")]
+z_index = 4
+
+[node name="RewardCOmponent" type="Node2D" parent="." node_paths=PackedStringArray("player")]
+script = ExtResource("11_6hctx")
+player_stats = ExtResource("12_ues17")
+player = NodePath("../Player")
+
+[editable path="Dungeons/DungeonRoom"]
+[editable path="Dungeons/DungeonRoom2"]
+[editable path="Dungeons/DungeonRoom8"]
+[editable path="Dungeons/DungeonRoom3"]
+[editable path="Dungeons/DungeonRoom6"]
+[editable path="Dungeons/DungeonRoom7"]
+[editable path="CanvasLayer/UI"]

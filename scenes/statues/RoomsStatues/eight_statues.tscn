@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://lbiwkjh4ygf"]
+
+[ext_resource type="PackedScene" uid="uid://bkgagd7e8kdpa" path="res://scenes/statues/statues.tscn" id="1_3nt88"]
+[ext_resource type="Script" uid="uid://by7ehoicohkjx" path="res://scenes/statues/RoomsStatues/eight_statues.gd" id="2_nllkw"]
+
+[node name="EightStatues" instance=ExtResource("1_3nt88")]
+script = ExtResource("2_nllkw")

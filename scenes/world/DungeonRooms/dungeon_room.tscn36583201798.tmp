@@ -1,0 +1,36 @@
+[gd_scene load_steps=4 format=3 uid="uid://wfg1jpx2u7vc"]
+
+[ext_resource type="Script" uid="uid://cqq6ytkbeb6rj" path="res://scenes/world/DungeonRooms/dungeon_room.gd" id="1_kavu7"]
+[ext_resource type="Texture2D" uid="uid://imcegg7lt26e" path="res://art/tilemap/IMG_2918.jpg" id="1_tv5ho"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tv5ho"]
+size = Vector2(363, 205)
+
+[node name="DungeonRoom" type="Node2D"]
+script = ExtResource("1_kavu7")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_tv5ho")
+centered = false
+
+[node name="Walls" type="StaticBody2D" parent="."]
+collision_layer = 4
+collision_mask = 0
+
+[node name="PlayerDetector" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector"]
+position = Vector2(241.5, 160.5)
+shape = SubResource("RectangleShape2D_tv5ho")
+debug_color = Color(0.807843, 0.364706, 0.482353, 0.211765)
+
+[node name="ProjectileDetector" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 24
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ProjectileDetector"]
+polygon = PackedVector2Array(70, 62, 58, 77, 59, 254, 67, 267, 145, 268, 159, 259, 176, 270, 309, 270, 323, 261, 340, 270, 412, 271, 429, 257, 429, 70, 408, 58, 336, 58, 326, 70, 297, 61, 174, 60, 152, 70, 139, 61, 69, 60, 68, 25, 450, 30, 449, 301, 31, 299, 31, 39)
+
+[connection signal="body_entered" from="PlayerDetector" to="." method="_on_player_detector_body_entered"]
+[connection signal="area_entered" from="ProjectileDetector" to="." method="_on_projectile_detector_area_entered"]

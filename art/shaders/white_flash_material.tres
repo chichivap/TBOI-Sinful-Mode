@@ -1,0 +1,9 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://l7t2y5j17siv"]
+
+[ext_resource type="Shader" uid="uid://jxjlfwat37j" path="res://art/shaders/white_flash_material.gdshader" id="1_vxucj"]
+
+[resource]
+shader = ExtResource("1_vxucj")
+shader_parameter/blink_duration = 0.5
+shader_parameter/is_blinking = false
+shader_parameter/time_hit = 0.0

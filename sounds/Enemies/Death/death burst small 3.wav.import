@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cfh33px4j0rl"
+path="res://.godot/imported/death burst small 3.wav-108a7bf9bcad244d840b4d1a01179932.sample"
+
+[deps]
+
+source_file="res://sounds/Enemies/Death/death burst small 3.wav"
+dest_files=["res://.godot/imported/death burst small 3.wav-108a7bf9bcad244d840b4d1a01179932.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2
